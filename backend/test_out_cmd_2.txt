@@ -1,0 +1,93 @@
+============================================================
+  QSR WhatsApp Bot — Test Harness
+============================================================
+
+🧪 Deterministic Validators
+  ✅ Valid quantities pass
+  ✅ Zero quantity fails
+  ✅ Empty items fails
+  ✅ Valid Indian phone passes
+  ✅ Invalid phone fails
+  ✅ Correct total validates
+  ✅ Incorrect total fails
+  ✅ QSR10 discount applies
+  ✅ Unknown code no discount
+  ✅ Restaurant availability check runs
+
+🧪 Monitoring & SLA
+  ✅ SLA targets configured
+  ✅ faq_response SLA exists
+2026-03-27 19:22:45 | INFO     | app.monitoring.quality_metrics | QUALITY_METRIC [Tool Success]: 100.0%
+  ✅ 100% success rate for clean results
+2026-03-27 19:22:45 | INFO     | app.monitoring.quality_metrics | QUALITY_METRIC [Tool Success]: 50.0%
+  ✅ Error decreases success rate
+2026-03-27 19:22:45 | INFO     | app.monitoring.quality_metrics | QUALITY_METRIC [Validator Pass]: 75.0%
+  ✅ Validation pass rate calculated
+  ✅ Circuit breaker starts CLOSED
+
+🧪 Petpooja POS Integration
+2026-03-27 19:22:45 | WARNING  | app.integrations.petpooja | Petpooja credentials missing — running in MOCK mode.
+  ✅ Mock mode enabled
+2026-03-27 19:22:45 | INFO     | app.integrations.petpooja | Petpooja MOCK: returning 6 menu items
+  ✅ Fetch menu returns items
+  ✅ Menu items have required fields
+  ✅ Stock check returns availability
+  ✅ Stock check returns current_stock
+2026-03-27 19:22:45 | WARNING  | app.integrations.petpooja | Petpooja MOCK: Item PP005 out of stock (need 1, have 0)
+  ✅ Out of stock detected correctly
+  ✅ Price fetch returns float
+2026-03-27 19:22:45 | INFO     | app.integrations.petpooja | Petpooja MOCK: created POS order POS-TEST-001
+  ✅ POS order created
+  ✅ POS order has ETA
+2026-03-27 19:22:45 | INFO     | app.integrations.petpooja | Petpooja MOCK: deducted 2 of PP001 (remaining: 48)
+  ✅ Stock deduction succeeds
+  ✅ Stock count decreased
+2026-03-27 19:22:45 | INFO     | app.integrations.petpooja | Petpooja MOCK: returning 6 menu items
+2026-03-27 19:22:45 | INFO     | app.integrations.petpooja | Petpooja: suggesting 3 alternatives for PP005
+  ✅ Alternatives suggested for OOS item
+2026-03-27 19:22:46 | INFO     | app.core.database | MongoDB connected successfully
+
+  📦 MongoDB connected — running DB-dependent tests
+
+🧪 Razorpay Advanced Integration
+2026-03-27 19:22:46 | WARNING  | app.integrations.razorpay_advanced | Razorpay credentials missing — running in MOCK mode.
+  ✅ Mock mode enabled
+2026-03-27 19:22:46 | INFO     | app.integrations.razorpay_advanced | Razorpay MOCK: payment link created — https://rzp.io/mock/TEST-RZP-001
+  ✅ Payment link created
+  ✅ Payment link ID returned
+2026-03-27 19:22:46 | INFO     | app.integrations.razorpay_advanced | Razorpay webhook event: payment.captured
+2026-03-27 19:22:46 | WARNING  | app.integrations.razorpay_advanced | Order TEST-RZP-001 not found for payment capture
+  ✅ Webhook payment.captured handled
+2026-03-27 19:22:46 | INFO     | app.integrations.razorpay_advanced | Razorpay MOCK: refund initiated for pay_test_123
+  ✅ Refund initiated
+  ✅ Refund status returned
+
+🧪 Autonomous Policy Engine
+  ✅ Non-existent order returns none
+2026-03-27 19:22:46 | INFO     | app.services.autonomous_policies | POLICY: Escalation — low confidence (0.50)
+  ✅ Low confidence triggers escalation
+2026-03-27 19:22:46 | INFO     | app.services.autonomous_policies | POLICY: Escalation — too many retries (3)
+  ✅ Retry limit triggers escalation
+  ✅ Good confidence no escalation
+2026-03-27 19:22:46 | INFO     | app.services.autonomous_policies | POLICY: Item PP005 out of stock
+  ✅ OOS triggers out_of_stock action
+2026-03-27 19:22:46 | INFO     | app.services.autonomous_policies | POLICY: Item PP001 low stock (3)
+  ✅ Low stock triggers warning
+2026-03-27 19:22:46 | INFO     | app.services.autonomous_policies | FRAUD: High-value order ₹6000.00 from +919999999999
+  ✅ High value triggers verification
+
+🧪 WhatsApp Compliance
+  ✅ Template renders correctly
+  ✅ Template has correct name
+2026-03-27 19:22:46 | WARNING  | app.services.whatsapp_compliance | Template not found: nonexistent
+  ✅ Missing template returns None
+  ✅ Templates list is not empty
+
+🧪 Menu Ingestion Pipeline
+  ✅ Same items produce same hash
+  ✅ Different items produce different hash
+2026-03-27 19:22:46 | INFO     | app.core.database | MongoDB connection closed
+
+============================================================
+  Results: 47 passed, 0 failed
+============================================================

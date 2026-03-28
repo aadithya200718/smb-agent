@@ -1,0 +1,62 @@
+# ===========================
+# AI WhatsApp Business Assistant
+# Phase 1: Foundation Dependencies
+# ===========================
+# Minimum versions specified; >= allows pip to install
+# wheels compatible with the host Python (3.13).
+
+# --- Web Framework ---
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
+pydantic>=2.6.4
+pydantic-settings>=2.2.1
+
+# --- Database ---
+motor>=3.4.0           # Async MongoDB driver (wraps pymongo)
+
+# --- Vector Database ---
+qdrant-client>=1.9.0
+
+# --- HTTP Client ---
+httpx>=0.27.0
+
+# --- Utilities ---
+orjson>=3.10.1         # Fast JSON serialisation
+python-dotenv>=1.0.1   # .env file loader
+
+# --- Logging ---
+python-json-logger>=2.0.7   # JSON structured logging
+
+# ===========================
+# Phase 2: AI Agent Core
+# ===========================
+
+# --- LLM / AI ---
+groq>=0.4.0
+
+# --- Agent Framework ---
+langgraph>=0.0.40
+langchain>=0.2.1
+
+# --- Memory / Embeddings ---
+sentence-transformers>=2.6.1
+
+# --- WhatsApp / Twilio ---
+twilio>=9.0.4
+python-multipart>=0.0.7    # Required by FastAPI for form data parsing
+
+# ===========================
+# Phase 4: Business Logic & APIs
+# ===========================
+
+# --- Authentication ---
+python-jose[cryptography]>=3.3.0   # JWT token handling
+passlib[bcrypt]>=1.7.4             # Password hashing
+email-validator>=2.0.0             # Pydantic EmailStr support
+
+# ===========================
+# Phase 5: Additional Features
+# ===========================
+
+# --- Proactive Engagement ---
+APScheduler>=3.10.1
