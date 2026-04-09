@@ -28,6 +28,3 @@ build/
 # Python cache
 __pycache__/
 *.pyc
-
-# OS generated files
-.DS_Store
